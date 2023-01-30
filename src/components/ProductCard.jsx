@@ -1,7 +1,7 @@
 import { Card, Button, Form, Row, Col } from "react-bootstrap";
 
 const ProductCard = (props) => {
-  const products = props.product;
+  const product = props.product;
   return (
     <div>
       <Card>
