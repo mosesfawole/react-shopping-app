@@ -12,12 +12,12 @@ function App() {
   return (
     <div className="">
       <Container>
+        <NavbarComponent />
         <Routes>
           <Route index element={<Store />} />
           <Route path="success" element={<Success />} />
           <Route path="cancel" element={<Cancel />} />
         </Routes>
-        <NavbarComponent></NavbarComponent>
       </Container>
     </div>
   );
