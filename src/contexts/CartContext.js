@@ -23,16 +23,41 @@ export function CartProvider({ children }) {
     }
     return quantity;
   }
-  const contextValue = {
-    items: cartProducts,
-    getProductQuantity,
-    addToCart,
-    removeFromCart,
-    deleteCart,
-    getTotalCost,
-  };
 
-  return (
-    <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
-  );
+  function addToCart(id) {
+    const quantity = getProductQuantity(id);
+
+    if (quantity === 0) {
+      setCartProducts([
+        ...cartProducts,
+        {
+          id: id,
+          quantity: 1,
+        },
+      ]);
+    } else {
+      setCartProducts(
+        cartProducts.map((product) =>
+          product.id === id
+            ? { ...product, quantity: product.quantity + 1 }
+            : product
+        )
+      );
+    }
+
+    const contextValue = {
+      items: cartProducts,
+      getProductQuantity,
+      addToCart,
+      removeFromCart,
+      deleteCart,
+      getTotalCost,
+    };
+
+    return (
+      <CartContext.Provider value={contextValue}>
+        {children}
+      </CartContext.Provider>
+    );
+  }
 }
