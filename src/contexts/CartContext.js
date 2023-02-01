@@ -45,6 +45,14 @@ export function CartProvider({ children }) {
       );
     }
 
+    function deleteCart(id) {
+      setCartProducts((cartProducts) =>
+        cartProducts.filter((currentProduct) => {
+          return currentProduct.id != id;
+        })
+      );
+    }
+
     const contextValue = {
       items: cartProducts,
       getProductQuantity,
